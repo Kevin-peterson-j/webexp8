@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>AngularJS - Comment Box</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    textarea {
+      width: 500px;
+      height: 80px;
+      display: block;
+      margin-bottom: 10px;
+      padding: 8px;
+    }
+    button {
+      padding: 6px 14px;
+      cursor: pointer;
+    }
+    ul {
+      width: 500px;
+      padding-left: 20px;
+      margin-top: 15px;
+    }
+    li {
+      padding: 6px 0;
+      border-bottom: 1px solid #ddd;
+    }
+    .remove-btn {
+      float: right;
+      color: red;
+      text-decoration: none;
+      font-weight: bold;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body ng-app="commentApp">
+
+  <div ng-controller="FrmController">
+    <h3>Post your Comment</h3>
+    <textarea ng-model="txtcomment" placeholder="Your Comment"></textarea>
+    <button ng-click="btn_add()">Post Comment</button>
+
+    <h4>Comments</h4>
+    <ul>
+      <li ng-repeat="comnt in comment track by $index">
+        {{ comnt }}
+        <a class="remove-btn" href="" ng-click="remItem($index)">x</a>
+      </li>
+    </ul>
+  </div>
+
+  <script>
+    angular.module("commentApp", [])
+      .controller("FrmController", function($scope) {
+        $scope.comment = [];
+
+        $scope.btn_add = function() {
+          if ($scope.txtcomment && $scope.txtcomment.trim() !== "") {
+            $scope.comment.push($scope.txtcomment.trim());
+            $scope.txtcomment = "";
+          }
+        };
+
+        $scope.remItem = function(index) {
+          $scope.comment.splice(index, 1);
+        };
+      });
+  </script>
+</body>
+</html>

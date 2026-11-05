@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>AngularJS - Hello World</title>
+  <!-- AngularJS CDN -->
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+</head>
+<body ng-app="app">
+
+  <div ng-controller="HelloWorldCtrl">
+    <h1>{{ message }}</h1>
+  </div>
+
+  <script>
+    angular.module("app", [])
+      .controller("HelloWorldCtrl", function($scope) {
+        $scope.message = "Hello World";
+      });
+  </script>
+</body>
+</html>
